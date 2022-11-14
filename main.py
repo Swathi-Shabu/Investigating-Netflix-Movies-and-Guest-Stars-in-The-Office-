@@ -1,3 +1,4 @@
+#Loading your friend's data into a dictionary
 # Create the years and durations lists
 years =[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]
 durations = [103, 101, 99, 100, 100, 95, 95, 96, 93,90]
@@ -8,6 +9,7 @@ movie_dict = {"years":years,"durations":durations}
 # Print the dictionary
 print(movie_dict)
 
+#Creating a DataFrame from a dictionary
 # Import pandas under its usual alias
 import pandas as pd
 
@@ -17,6 +19,7 @@ durations_df = pd.DataFrame(movie_dict)
 # Print the DataFrame
 print(durations_df)
 
+#A visual inspection of our data
 # Import matplotlib.pyplot under its usual alias and create a figure
 import matplotlib.pyplot as plt
 fig = plt.figure()
@@ -30,12 +33,14 @@ plt.title('Netflix Movie Durations 2011-2020')
 # Show the plot
 plt.show()
 
+#Loading the rest of the data from a CSV
 # Read in the CSV as a DataFrame
 netflix_df = pd.read_csv("datasets/netflix_data.csv")
 
 # Print the first five rows of the DataFrame
 print(netflix_df[0:5])
 
+#Filtering for movies!
 # Subset the DataFrame for type "Movie"
 netflix_df_movies_only=netflix_df[netflix_df['type'] =='Movie']
 
@@ -45,6 +50,7 @@ netflix_movies_col_subset = netflix_df_movies_only.loc[:,["title","country","gen
 # Print the first five rows of the new DataFrame
 print(netflix_movies_col_subset[0:5])
 
+#Creating a scatter plot
 # Create a figure and increase the figure size
 fig = plt.figure(figsize=(12,8))
 
@@ -57,12 +63,14 @@ plt.title("Movie Duration by Year of Release")
 # Show the plot
 plt.show()
 
+#Digging deeper
 # Filter for durations shorter than 60 minutes
 short_movies = netflix_movies_col_subset[netflix_movies_col_subset['duration'] < 60]
 
 # Print the first 20 rows of short_movies
 print(short_movies[0:20])
 
+#Marking non-feature films
 # Define an empty list
 colors = []
 
@@ -80,6 +88,7 @@ for lab, row in netflix_movies_col_subset.iterrows() :
 # Inspect the first 10 values in your list        
 print(colors[0:10])
 
+#Plotting with color!
 # Set the figure style and initalize a new figure
 plt.style.use('fivethirtyeight')
 fig = plt.figure(figsize=(12,8))
